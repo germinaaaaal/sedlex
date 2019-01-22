@@ -108,17 +108,25 @@ async def on_message(message):
 	if message.author == client.user:
 		return
 
-	if message.content[0] == ">":
-		if "help" in message.content:
+	query = message.content.lower()
+
+	if query[0] == ">" and len(query) > 1:
+		if query == ">help":
 			await client.send_message(message.channel, commands["help"])
-		elif "define" in message.content:
+		elif query == ">define":
 			await client.send_message(message.channel, commands["define"])
-		elif len(message.content.split(" ")) > 1:
-			if message.content.split(" ")[0] in [">define", ">def", ">d"]:
-				defined = "define " + message.content.split(" ")[1]
-				await client.send_message(message.channel, "`" + commands[defined] + "`")
-			elif message.content.split(" ")[0] in [">charter", ">c"]: 
-				article = message.content.split(" ")[1]
+		elif len(query.split(" ")) > 1:
+			if query.split(" ")[0] == ">define":
+				if query == ">define chief of culture" or query == ">define chief":
+					await client.send_message(message.channel, "`" + commands["define chief of culture"] + "`")
+				else:
+					defined = "define " + query.split(" ")[1]
+					if defined in commands:
+						await client.send_message(message.channel, "`" + commands[defined] + "`")
+					else:
+						await client.send_message(message.channel, "`gloss not found.`")
+			elif query.split(" ")[0] in [">charter", ">c"]: 
+				article = query.split(" ")[1]
 				if article in charter:
 					await client.send_message(message.channel, ("`Charter §%s: " + charter[article] + "`") % article) 
 				else:
