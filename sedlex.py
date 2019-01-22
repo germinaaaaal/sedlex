@@ -126,4 +126,4 @@ async def on_message(message):
 		else:
 			await client.send_message(message.channel, "`sorry, couldn't understand that.`")
 
-client.run('NTM2NTc4MjczNzg2ODU1NDI0.DyZL8A.oo5B9VY2ru8WZKcQrZ6pS8Kj_kg')
+client.run(TOKEN)
