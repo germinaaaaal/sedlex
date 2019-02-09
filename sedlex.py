@@ -125,10 +125,10 @@ async def on_message(message):
 						await client.send_message(message.channel, "`" + commands[defined] + "`")
 					else:
 						await client.send_message(message.channel, "`gloss not found.`")
-			elif query.split(" ")[0] in [">charter", ">c"]: 
+			elif query.split(" ")[0] in [">charter", ">c"]:
 				article = query.split(" ")[1]
 				if article in charter:
-					await client.send_message(message.channel, ("`Charter §%s: " + charter[article] + "`") % article) 
+					await client.send_message(message.channel, ("`Charter §%s: " + charter[article] + "`") % article)
 				else:
 					await client.send_message(message.channel, "`Charter section not found.`")
 		else:
